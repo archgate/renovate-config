@@ -22,12 +22,38 @@
   "customManagers": [
     {
       "customType": "regex",
-      "description": "Extract tool versions from .prototools (e.g., bun, node)",
+      "description": "Extract bun version from .prototools",
       "managerFilePatterns": ["/^\\.prototools$/"],
       "matchStrings": ["bun\\s*=\\s*\"(?<currentValue>[^\"]+)\""],
       "depNameTemplate": "oven-sh/bun",
       "datasourceTemplate": "github-releases",
       "extractVersionTemplate": "^bun-v(?<version>.+)$"
+    },
+    {
+      "customType": "regex",
+      "description": "Extract node version from .prototools",
+      "managerFilePatterns": ["/^\\.prototools$/"],
+      "matchStrings": ["node\\s*=\\s*\"(?<currentValue>[^\"]+)\""],
+      "depNameTemplate": "node",
+      "datasourceTemplate": "node-version",
+      "versioningTemplate": "node"
+    },
+    {
+      "customType": "regex",
+      "description": "Extract npm version from .prototools",
+      "managerFilePatterns": ["/^\\.prototools$/"],
+      "matchStrings": ["npm\\s*=\\s*\"(?<currentValue>[^\"]+)\""],
+      "depNameTemplate": "npm",
+      "datasourceTemplate": "npm"
+    },
+    {
+      "customType": "regex",
+      "description": "Extract gh (GitHub CLI) version from .prototools",
+      "managerFilePatterns": ["/^\\.prototools$/"],
+      "matchStrings": ["gh\\s*=\\s*\"(?<currentValue>[^\"]+)\""],
+      "depNameTemplate": "cli/cli",
+      "datasourceTemplate": "github-releases",
+      "extractVersionTemplate": "^v(?<version>.+)$"
     }
   ],
   "packageRules": [
@@ -35,6 +61,12 @@
       "description": "Group Bun runtime (.prototools) and @types/bun together",
       "groupName": "bun",
       "matchPackageNames": ["oven-sh/bun", "@types/bun"]
+    },
+    {
+      "description": "Group .prototools toolchain updates (node, npm, gh) together",
+      "groupName": "prototools toolchain",
+      "matchPackageNames": ["node", "npm", "cli/cli"],
+      "matchUpdateTypes": ["minor", "patch"]
     },
     {
       "description": "Group all non-major devDependencies into a single PR per repo",

@@ -46,9 +46,18 @@ Extends [`config:best-practices`](https://docs.renovatebot.com/presets-config/#c
 - **Schedule:** PRs created during non-office hours only
 - **Rate limited:** max 5 concurrent PRs, max 2 per hour
 
-### Custom managers
+### Custom managers — `.prototools`
 
-- **`.prototools` bun version** tracked via regex manager (grouped with `@types/bun`)
+Regex custom managers parse tool versions from [proto](https://moonrepo.dev/proto) `.prototools` files:
+
+| Tool | Datasource | Package | Notes |
+| --- | --- | --- | --- |
+| `bun` | `github-releases` | `oven-sh/bun` | Grouped with `@types/bun` |
+| `node` | `node-version` | `node` | Uses `node` versioning (handles loose versions like `"24"`) |
+| `npm` | `npm` | `npm` | Standard npm registry |
+| `gh` | `github-releases` | `cli/cli` | GitHub CLI |
+
+Non-major updates for `node`, `npm`, and `gh` are grouped as **prototools toolchain**.
 
 ## Overriding for a specific repo
 
