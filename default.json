@@ -1,0 +1,92 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": "Shared Renovate configuration for the archgate organization.",
+  "extends": [
+    "config:best-practices",
+    "security:openssf-scorecard",
+    ":automergeRequireAllStatusChecks",
+    ":approveMajorUpdates",
+    ":rebaseStalePrs",
+    ":enableVulnerabilityAlerts",
+    "schedule:nonOfficeHours",
+    "schedule:automergeNonOfficeHours",
+    ":timezone(Europe/Berlin)"
+  ],
+  "osvVulnerabilityAlerts": true,
+  "prConcurrentLimit": 5,
+  "prHourlyLimit": 2,
+  "minimumReleaseAge": "3 days",
+  "configMigration": true,
+  "reviewersFromCodeOwners": true,
+  "labels": ["dependencies"],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "description": "Extract tool versions from .prototools (e.g., bun, node)",
+      "managerFilePatterns": ["/^\\.prototools$/"],
+      "matchStrings": ["bun\\s*=\\s*\"(?<currentValue>[^\"]+)\""],
+      "depNameTemplate": "oven-sh/bun",
+      "datasourceTemplate": "github-releases",
+      "extractVersionTemplate": "^bun-v(?<version>.+)$"
+    }
+  ],
+  "packageRules": [
+    {
+      "description": "Group Bun runtime (.prototools) and @types/bun together",
+      "groupName": "bun",
+      "matchPackageNames": ["oven-sh/bun", "@types/bun"]
+    },
+    {
+      "description": "Group all non-major devDependencies into a single PR per repo",
+      "groupName": "devDependencies (non-major)",
+      "matchDepTypes": ["devDependencies"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "matchPackageNames": ["!@types/bun"]
+    },
+    {
+      "description": "Automerge non-major updates for linting, formatting, and type packages",
+      "matchPackageNames": [
+        "oxlint",
+        "oxfmt",
+        "prettier",
+        "prettier-plugin-astro",
+        "eslint",
+        "@commitlint/{/,}**",
+        "commitizen"
+      ],
+      "matchPackagePatterns": ["^@types/"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "automerge": true,
+      "automergeType": "pr"
+    },
+    {
+      "description": "Label and require review for major updates",
+      "matchUpdateTypes": ["major"],
+      "addLabels": ["major-update"],
+      "automerge": false
+    },
+    {
+      "description": "Label security/vulnerability PRs",
+      "matchCategories": ["security"],
+      "addLabels": ["security"],
+      "minimumReleaseAge": "0 days",
+      "prPriority": 10
+    },
+    {
+      "description": "Pin GitHub Actions to SHA digests for supply-chain security",
+      "matchManagers": ["github-actions"],
+      "pinDigests": true
+    },
+    {
+      "description": "Group GitHub Actions updates",
+      "matchManagers": ["github-actions"],
+      "groupName": "github-actions"
+    },
+    {
+      "description": "Group docs site dependencies (Astro, Starlight, etc.)",
+      "groupName": "docs dependencies",
+      "matchFileNames": ["docs/package.json"],
+      "separateMajorMinor": false
+    }
+  ]
+}
