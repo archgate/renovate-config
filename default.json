@@ -15,7 +15,7 @@
   "osvVulnerabilityAlerts": true,
   "prConcurrentLimit": 5,
   "prHourlyLimit": 2,
-  "minimumReleaseAge": "3 days",
+  "minimumReleaseAge": "7 days",
   "configMigration": true,
   "reviewersFromCodeOwners": true,
   "labels": ["dependencies"],
