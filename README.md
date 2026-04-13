@@ -25,12 +25,13 @@ Extends [`config:best-practices`](https://docs.renovatebot.com/presets-config/#c
 - Pin devDependencies
 - Pin Docker image digests
 - Pin GitHub Action digests
-- npm 3-day minimum release age (anti-malware)
+- npm minimum release age (overridden to **7 days** — see below)
 - Weekly lock file maintenance
 - Config migration PRs
 
 ### Security hardening
 
+- **7-day minimum release age** for all updates (overrides the 3-day `config:best-practices` default)
 - **OpenSSF Scorecard** badges on PRs for supply-chain visibility
 - **OSV vulnerability alerts** enabled
 - **Vulnerability PRs** skip the release-age delay and get priority `10`
