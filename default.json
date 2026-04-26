@@ -58,9 +58,9 @@
   ],
   "packageRules": [
     {
-      "description": "Group Bun runtime (.prototools) and @types/bun together",
+      "description": "Group Bun runtime (.prototools, workflow bun-version) and @types/bun together",
       "groupName": "bun",
-      "matchPackageNames": ["oven-sh/bun", "@types/bun"]
+      "matchPackageNames": ["oven-sh/bun", "@types/bun", "bun"]
     },
     {
       "description": "Group .prototools toolchain updates (node, npm, gh) together",
@@ -110,8 +110,9 @@
       "pinDigests": true
     },
     {
-      "description": "Group GitHub Actions updates",
+      "description": "Group GitHub Actions updates (excluding bun, which groups with .prototools)",
       "matchManagers": ["github-actions"],
+      "excludePackageNames": ["bun"],
       "groupName": "github-actions"
     },
     {
