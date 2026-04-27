@@ -10,7 +10,7 @@
     ":enableVulnerabilityAlerts",
     "schedule:nonOfficeHours",
     "schedule:automergeNonOfficeHours",
-    ":timezone(Europe/Berlin)",
+    ":timezone(Europe/Oslo)",
     ":gitSignOff"
   ],
   "osvVulnerabilityAlerts": true,
