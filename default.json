@@ -75,6 +75,12 @@
       "pinDigests": true
     },
     {
+      "description": "SLSA reusable workflow MUST stay tag-pinned — generate-builder.sh rejects non-tag refs (slsa-framework/slsa-github-generator#150)",
+      "matchManagers": ["github-actions"],
+      "matchPackageNames": ["slsa-framework/slsa-github-generator"],
+      "pinDigests": false
+    },
+    {
       "description": "Group GitHub Actions updates (excluding bun, which groups with .prototools)",
       "matchManagers": ["github-actions"],
       "excludePackageNames": ["bun"],
