@@ -23,7 +23,8 @@
     {
       "description": "Group Bun runtime (.prototools) and @types/bun together",
       "groupName": "bun",
-      "matchPackageNames": ["oven-sh/bun", "@types/bun"]
+      "matchPackageNames": ["oven-sh/bun", "@types/bun"],
+      "internalChecksFilter": "strict"
     },
     {
       "description": "Group .prototools toolchain updates (node, npm, gh) together",
