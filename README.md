@@ -43,6 +43,11 @@ Extends [`config:best-practices`](https://docs.renovatebot.com/presets-config/#c
 - **Non-major devDependencies grouped** into a single PR per repo
 - **Docs dependencies grouped** into a single PR
 - **GitHub Actions grouped** into a single PR
+- **Java/Maven dependencies grouped** into a single PR (all update types)
+- **.NET/NuGet dependencies grouped** into a single PR (all update types)
+- **Python dependencies grouped** into a single PR (all update types)
+- **Go module dependencies grouped** into a single PR (all update types)
+- **Ruby/Bundler dependencies grouped** into a single PR (all update types)
 - **Linters, formatters, and type packages auto-merged** on minor/patch
 - **Schedule:** PRs created during non-office hours only
 - **Rate limited:** max 5 concurrent PRs, max 2 per hour

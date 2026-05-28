@@ -91,6 +91,36 @@
       "groupName": "docs dependencies",
       "matchFileNames": ["docs/package.json"],
       "separateMajorMinor": false
+    },
+    {
+      "description": "Group all Java/Maven dependencies into a single PR",
+      "groupName": "java dependencies",
+      "matchManagers": ["maven"],
+      "separateMajorMinor": false
+    },
+    {
+      "description": "Group all .NET/NuGet dependencies into a single PR",
+      "groupName": "dotnet dependencies",
+      "matchManagers": ["nuget"],
+      "separateMajorMinor": false
+    },
+    {
+      "description": "Group all Python dependencies into a single PR",
+      "groupName": "python dependencies",
+      "matchManagers": ["pip_requirements", "pip-compile", "pipenv", "poetry", "pep621", "setup-cfg"],
+      "separateMajorMinor": false
+    },
+    {
+      "description": "Group all Go module dependencies into a single PR",
+      "groupName": "go dependencies",
+      "matchManagers": ["gomod"],
+      "separateMajorMinor": false
+    },
+    {
+      "description": "Group all Ruby/Bundler dependencies into a single PR",
+      "groupName": "ruby dependencies",
+      "matchManagers": ["bundler"],
+      "separateMajorMinor": false
     }
   ]
 }
