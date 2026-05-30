@@ -8,14 +8,19 @@
     ":approveMajorUpdates",
     ":rebaseStalePrs",
     ":enableVulnerabilityAlerts",
-    "schedule:nonOfficeHours",
-    "schedule:automergeNonOfficeHours",
     ":timezone(Europe/Oslo)",
     ":gitSignOff"
   ],
+  "schedule": [
+    "* 0-5 25-31 * 0"
+  ],
+  "automergeSchedule": [
+    "* 0-5 25-31 * 0"
+  ],
+  "semanticCommits": "enabled",
   "osvVulnerabilityAlerts": true,
-  "prConcurrentLimit": 5,
-  "prHourlyLimit": 2,
+  "prConcurrentLimit": 20,
+  "prHourlyLimit": 0,
   "minimumReleaseAge": "7 days",
   "internalChecksFilter": "strict",
   "configMigration": true,
@@ -63,10 +68,11 @@
       "automerge": false
     },
     {
-      "description": "Label security/vulnerability PRs",
+      "description": "Label security/vulnerability PRs and bypass the monthly schedule so fixes ship immediately",
       "matchCategories": ["security"],
       "addLabels": ["security"],
       "minimumReleaseAge": "0 days",
+      "schedule": ["at any time"],
       "prPriority": 10
     },
     {
