@@ -33,9 +33,9 @@
       "matchPackageNames": ["oven-sh/bun", "@types/bun", "bun"]
     },
     {
-      "description": "Group .prototools toolchain updates (node, npm, gh) together",
+      "description": "Group .prototools toolchain updates (node, npm, gh, moon, proto) together",
       "groupName": "prototools toolchain",
-      "matchPackageNames": ["node", "npm", "cli/cli"],
+      "matchPackageNames": ["node", "npm", "cli/cli", "moon", "proto"],
       "matchUpdateTypes": ["minor", "patch"]
     },
     {
@@ -46,6 +46,13 @@
       "matchPackageNames": ["!@types/bun"]
     },
     {
+      "description": "Group all non-major production dependencies into a single PR per repo",
+      "groupName": "dependencies (non-major)",
+      "matchDepTypes": ["dependencies"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "matchPackageNames": ["!bun"]
+    },
+    {
       "description": "Automerge non-major updates for linting, formatting, and type packages",
       "matchPackageNames": [
         "oxlint",
@@ -54,9 +61,9 @@
         "prettier-plugin-astro",
         "eslint",
         "@commitlint/{/,}**",
-        "commitizen"
+        "commitizen",
+        "/^@types\\//"
       ],
-      "matchPackagePatterns": ["^@types/"],
       "matchUpdateTypes": ["minor", "patch"],
       "automerge": true,
       "automergeType": "pr"
@@ -89,7 +96,7 @@
     {
       "description": "Group GitHub Actions updates (excluding bun, which groups with .prototools)",
       "matchManagers": ["github-actions"],
-      "excludePackageNames": ["bun"],
+      "matchPackageNames": ["!bun"],
       "groupName": "github-actions"
     },
     {

@@ -41,6 +41,8 @@ Extends [`config:best-practices`](https://docs.renovatebot.com/presets-config/#c
 ### Noise reduction
 
 - **Non-major devDependencies grouped** into a single PR per repo
+- **Non-major production dependencies grouped** into a single PR per repo
+- **.prototools toolchain grouped** (node, npm, gh, moon, proto) into a single PR
 - **Docs dependencies grouped** into a single PR
 - **GitHub Actions grouped** into a single PR
 - **Java/Maven dependencies grouped** into a single PR (all update types)
