@@ -100,10 +100,11 @@
       "groupName": "github-actions"
     },
     {
-      "description": "Group docs site dependencies (Astro, Starlight, etc.)",
+      "description": "Group docs site dependencies (Astro, Starlight, etc.). Commit as chore(deps), not fix(deps): the docs site is not a released artifact, so a bump must not trigger a release.",
       "groupName": "docs dependencies",
       "matchFileNames": ["docs/package.json"],
-      "separateMajorMinor": false
+      "separateMajorMinor": false,
+      "semanticCommitType": "chore"
     },
     {
       "description": "Group all Java/Maven dependencies into a single PR",
