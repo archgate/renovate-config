@@ -26,6 +26,27 @@
   "configMigration": true,
   "reviewersFromCodeOwners": true,
   "labels": ["dependencies"],
+  "ignorePaths": [
+    "**/node_modules/**",
+    "**/bower_components/**",
+    "**/vendor/**",
+    "**/examples/**",
+    "**/__tests__/**",
+    "**/test/**",
+    "**/tests/**",
+    "**/__fixtures__/**",
+    "**/.archgate/fixtures/**"
+  ],
+  "nuget": {
+    "ignorePaths": [
+      "**/node_modules/**",
+      "**/bower_components/**",
+      "**/vendor/**",
+      "**/examples/**",
+      "**/__fixtures__/**",
+      "**/.archgate/fixtures/**"
+    ]
+  },
   "packageRules": [
     {
       "description": "Group Bun runtime (.prototools, workflow bun-version) and @types/bun together",

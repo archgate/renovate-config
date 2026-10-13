@@ -55,6 +55,13 @@ Extends [`config:best-practices`](https://docs.renovatebot.com/presets-config/#c
 - **Automerges** are batched into the same monthly window
 - **Rate limited:** max 20 concurrent PRs, no per-hour cap (so the full monthly batch can land in one run)
 
+### Ignored paths
+
+- **Archgate rule fixtures** under `.archgate/fixtures/` are ignored, at any depth. They are written to pass or to violate a rule, so Renovate neither lists nor updates them.
+- The `config:best-practices` ignore list (`node_modules`, `bower_components`, `vendor`, `examples`, `__tests__`, `test`, `tests`, `__fixtures__`) is repeated in `default.json`, because Renovate replaces `ignorePaths` and does not merge it. NuGet keeps its shorter list, which leaves test projects updatable.
+
+A repository that sets its own `ignorePaths` replaces this whole list and must repeat the entries it still wants, `**/.archgate/fixtures/**` included.
+
 ## Overriding for a specific repo
 
 Add `packageRules` or `ignorePresets` in the repo's own `renovate.json`:
